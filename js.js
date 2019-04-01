@@ -1,17 +1,16 @@
 window.onload = function () {
-    let categorias = document.getElementById("categorias");
     $.ajax({
         type: "GET",
         url: "http://localhost:3000/categorias",
         //data: "data",
         //dataType: "dataType",
         success: function (json) {
-            for (let index = 0; index < json.length; index++) {
+            $("#categorias").html('');
+            for (let index = 0; index < json.length; index++) {//PROBAR CON MAP Y CON EACH, mas sencillo(this.nombre...)
                 $("#categorias").append("<a href='#'>" + json[index]["nombre"] + "</a>");
                 //console.log(json[index]["id"]);
                 //console.log(json[index]);
                 //console.log(json[index]["nombre"]);
-                //console.log(json.nombre[index]);
             }
             //console.log(json);
             //console.log(json.nombre);
