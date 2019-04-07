@@ -22,7 +22,18 @@ window.onload = function () {
             });
         }
     });
-    function mostrarCategoria() {
-        $("#articulos").html('');
-    }
+}
+function mostrarCategoria() {
+    $("#articulos").html('');
+    console.log(this.id);//Es undefined
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:3000/articulos?idCat=" + this.id + "",
+        success: function (json) {
+            json.map(elemento => {
+                console.log("HOLA");
+                $("#articulos").append("<div href='#' id=art" + elemento.id + " onclick=mostrarCategoria()>" + elemento.nombre + "</div>");
+            });
+        }
+    });
 }
