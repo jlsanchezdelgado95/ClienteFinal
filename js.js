@@ -4,11 +4,48 @@ window.onload = function () {
         url: "http://localhost:3000/categorias",
         success: function (json) {
             $("#categorias").html('');
-            json.map(elemento => {
-                $("#categorias").append("<a href='#' id=" + elemento.id + " onclick=mostrarCategoria()>" + elemento.nombre + "</a>");
+            json.map(elemento => {//Mejor hacerlo con $categorias.on(click,clase,function...)
+                console.log(elemento.id);
+                idCat=elemento.id;
+                $("#categorias").append("<a href='#' id=" + elemento.id + ">" + elemento.nombre + "</a>");
             });
         }
     });
+
+    $("#categorias").on("click","a",function(){
+        $("#articulos").html('');
+        idCat=($(this).attr("id"));
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:3000/articulos?idCat=" + idCat+ "",
+            success: function (json) {
+                json.map(elemento => {
+                    console.log("HOLA");
+                    $("#articulos").append("<div href='#' id=art" + elemento.id + " onclick=mostrarCategoria()>" + elemento.nombre + "</div>");
+                });
+            }
+        });
+    })
+    
+    
+    
+    
+    
+    //Original JL con onclick
+   /* 
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:3000/categorias",
+        success: function (json) {
+            $("#categorias").html('');
+            json.map(elemento => {//Mejor hacerlo con $categorias.on(click,clase,function...)
+                console.log(elemento.id);
+                idCat=elemento.id;
+                $("#categorias").append("<a href='#' id=" + elemento.id + " onclick=mostrarCategoria('"+idCat+"')>" + elemento.nombre + "</a>");
+            });
+        }
+    });
+    */
     $.ajax({
         type: "GET",
         url: "http://localhost:3000/fotos",
@@ -23,12 +60,12 @@ window.onload = function () {
         }
     });
 }
-function mostrarCategoria() {
+function mostrarCategoria(idCat) {
     $("#articulos").html('');
-    console.log(this.id);//Es undefined
+    console.log(idCat);
     $.ajax({
         type: "GET",
-        url: "http://localhost:3000/articulos?idCat=" + this.id + "",
+        url: "http://localhost:3000/articulos?idCat=" + idCat+ "",
         success: function (json) {
             json.map(elemento => {
                 console.log("HOLA");
