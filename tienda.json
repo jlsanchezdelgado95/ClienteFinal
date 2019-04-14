@@ -3,12 +3,12 @@
     {
       "id": "c01",
       "nombre": "Portatiles",
-      "activa": "false"
+      "activa": "true"
     },
     {
       "id": "c02",
       "nombre": "Discos Duros",
-      "activa": "false"
+      "activa": "true"
     },
     {
       "id": "c03",
