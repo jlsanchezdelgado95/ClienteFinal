@@ -1,4 +1,6 @@
 window.onload = function () {
+   //micarrito=new carrito()
+   
     $.ajax({
         type: "GET",
         url: "http://localhost:3000/categorias",
@@ -34,24 +36,48 @@ window.onload = function () {
             success: function (json) {
                 json.map(elemento => {
                     console.log(elemento.id);
-                    $("#articulos").append("<div href='#' id=art" + elemento.id + ">" + elemento.nombre + "<br>" + elemento.descripcion + "<br>" + elemento.precio + 
-                    "<button class='btn btn-info'>Añadir al Carrito</button></div>");
+                    $("#articulos").append("<div href='#' id=art" + elemento.id + "><p>" + elemento.nombre + "</p><p>" + elemento.descripcion + "</p><p>" + elemento.precio + 
+                    "</p><button class='btn btn-info'>Añadir al Carrito</button></div>");
                 });
             }
         });
     })
 
     $("#articulos").on("click","button",function(){
-        idArt = $("div:nth-child(2)");
-        console.log(idArt);
-        $.ajax({
-            type: "method",
-            url: "http://localhost:3000/articulos?id=" + idArt + "",
-            success: function (elemento) {
-                
-            }
-        });
+        cod=$(this).parent().attr("id")
+        console.log(cod)
+        nombre=$(this).parent().find("p:nth-child(1)").html()
+        descripcion=$(this).parent().find("p:nth-child(2)").html()
+        precio=$(this).parent().find("p:nth-child(3)").html()
+        console.log(precio);
+        $("#cuerpo").html("");
+        $("#cuerpo").append("<h3>"+cod+"</h3>");
+        $("#cuerpo").append("<p>"+nombre+"</p>");
+        $("#cuerpo").append("<p>"+descripcion+"</p>");
+        $("#cuerpo").append("<p>"+precio+"</p>");
+        
+
+       
         $("#myModal").modal("show");
+
+    });
+
+    //Boton añadir a carrito
+
+    $("#btn-comprar").click(function(){//COMPROBAR CON EL NTH-CHILD
+        console.log("Comprando...")
+        codArt=$("#cuerpo").find("h3:eq(0)").html();
+        nomArt=$("#cuerpo").find("p:eq(0)").html();
+        desArt=$("#cuerpo").find("p:eq(1)").html();
+        pvpArt=$("#cuerpo").find("p:eq(2)").html();
+        console.log(codArt);
+        console.log(nomArt);
+        console.log(desArt);
+        console.log(pvpArt);
+
+        //miarticulo=new Articulo(codArt,nomArt,desArt,pvpArt)
+
+        //micarrito.anyadir(miarticulo)
 
     })
 
