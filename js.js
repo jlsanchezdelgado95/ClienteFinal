@@ -1,5 +1,14 @@
 window.onload = function () {
-    micarrito = new Carrito("11/05/2019", 1);
+    idCarrito = 0;
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:3000/carritos",
+        success: function (json) {
+            idCarrito = json.length;
+        }
+    });
+
+    micarrito = new Carrito("11/05/2019", idCarrito);
     $("#bienvenida").modal("show");
 
         //OBJETO ARTICULO
@@ -81,7 +90,7 @@ window.onload = function () {
     $("#carrito").click(function () {//Funcion para pintar todo el carro
         $("#articulos").html('');
         $("#articulos").append("<p>Su carrito tiene fecha de: " + micarrito.fecha + "</p>");
-        $("#articulos").append("<p>Su numero de carrito es: " + micarrito.numero + "</p>");
+        $("#articulos").append("<p>Su numero de carrito es: " + idCarrito + "</p>");
         $("#articulos").append("<p>Sus articulos son : </p>");
         for (let index = 0; index < micarrito.articulos.length; index++) {
             $("#articulos").append("<p>Codigo Articulo: " + micarrito.articulos[index].codigo + "</p>");

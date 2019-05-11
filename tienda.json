@@ -45,6 +45,18 @@
           "unidades": 2
         }
       ]
+    },
+    {
+      "fecha": "11/05/2019",
+      "id": 2,
+      "articulos": [
+        {
+          "codigo": "arta05",
+          "descripcion": "Sobremesa1",
+          "precio": "HP i7",
+          "unidades": 3
+        }
+      ]
     }
   ],
   "articulos": [
