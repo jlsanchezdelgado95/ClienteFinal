@@ -23,6 +23,8 @@
     <div class="container">
       <h2>Gestion de articulos por categorias</h2>
     </div>
+    <div id="carrito" class="btn btn-info">CARRITO</div>
+    <div id="compraJSON" class='btn btn-info'>Comprar</div>
   </nav>
   <!-- Page Content -->
   <div class="container">
@@ -46,6 +48,25 @@
   <!-- Trigger the modal with a button -->
   <!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>-->
 
+  <!-- MODEL BIENVENIDA -->
+  <div id="bienvenida" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div id="cuerpo" class="modal-body">
+            Bienvenido a mi tienda online.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-dismiss="modal">Bienvenido</button>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+<!-- FIN DE ALERTA -->
   <!-- Modal -->
   <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -54,13 +75,13 @@
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">Articulo Seleccionado</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>         
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
-        <div id="cuerpo" class="modal-body">
+        <div id="cuerpoArt" class="modal-body">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
-          <button id="btn-comprar" type="button" class="btn btn-danger" >Añadir carrito</button>
+          <button id="btn-comprar" type="button" class="btn btn-danger">Añadir carrito</button>
         </div>
       </div>
 

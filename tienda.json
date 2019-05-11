@@ -8,29 +8,43 @@
     {
       "id": "c02",
       "nombre": "Discos Duros",
-      "activa": "true"
+      "activa": "false"
     },
     {
       "id": "c03",
       "nombre": "Sobremesas",
-      "activa": "true"
+      "activa": "false"
     }
   ],
   "fotos": [
     {
       "id": "foto1",
-      "activa" : "true",
-      "link" : "fotos/f1.jpg"
+      "activa": "true",
+      "link": "fotos/f1.jpg"
     },
     {
       "id": "foto2",
-      "activa" : "false",
-      "link" : "fotos/f2.jpg"
+      "activa": "false",
+      "link": "fotos/f2.jpg"
     },
     {
       "id": "foto3",
-      "activa" : "false",
-      "link" : "fotos/f3.jpg"
+      "activa": "false",
+      "link": "fotos/f3.jpg"
+    }
+  ],
+  "carritos": [
+    {
+      "fecha": "11/05/2019",
+      "id": 1,
+      "articulos": [
+        {
+          "codigo": "arta01",
+          "descripcion": "Portatil1",
+          "precio": "Lenovo i3",
+          "unidades": 2
+        }
+      ]
     }
   ],
   "articulos": [
