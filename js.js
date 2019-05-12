@@ -96,7 +96,7 @@ window.onload = function () {
         $("#myModal").modal("show");
     });
 
-    $("#carrito").click(function () {//Funcion para pintar todo el carro
+    function pintarCarro() {
         precioTotal = 0;
         $("#articulos").html('');
         $("#articulos").append("<p>Su carrito tiene fecha de: " + micarrito.fecha + "</p>");
@@ -106,10 +106,14 @@ window.onload = function () {
             $("#articulos").append("<h3>Descripcion: " + micarrito.articulos[index].descripcion + "</h3>");
             $("#articulos").append("<p>Precio: " + micarrito.articulos[index].precio + "</p>");
             $("#articulos").append("<p>Unidades Articulo: " + micarrito.articulos[index].unidades + "</p>");
-            $("#articulos").append("<p>Precio Total por articulos: " + (micarrito.articulos[index].precio*micarrito.articulos[index].unidades) + "€</p>");
-            precioTotal += micarrito.articulos[index].precio*micarrito.articulos[index].unidades;
+            $("#articulos").append("<p>Precio Total por articulos: " + (micarrito.articulos[index].precio * micarrito.articulos[index].unidades) + "€</p>");
+            precioTotal += micarrito.articulos[index].precio * micarrito.articulos[index].unidades;
         }
         $("#articulos").append("<p>Precio TOTAL carrito: " + precioTotal + "</p>");
+    }
+
+    $("#carrito").click(function () {//Funcion para pintar todo el carro
+        pintarCarro();
     });
 
     $("#compraJSON").click(function () {//funcion para meter en el json
@@ -121,6 +125,8 @@ window.onload = function () {
             contentType: 'application/json',
             success: function (response) {
                 $("#compra").modal("show");
+                newCarrito();
+                pintarCarro();
             }
         });
     });
@@ -135,7 +141,7 @@ window.onload = function () {
         micarrito.anyadirArticulo(miarticulo);
         //$("#myModal").modal("hide");//OPCIONAL
     })
-/////////////////////////////
+    /////////////////////////////
     $.ajax({//CARRUSEL FOTOS
         type: "GET",
         url: "http://localhost:3000/fotos",

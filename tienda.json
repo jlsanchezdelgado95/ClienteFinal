@@ -124,6 +124,54 @@
           "unidades": 7
         }
       ]
+    },
+    {
+      "fecha": "13/5/2019",
+      "id": 10,
+      "articulos": [
+        {
+          "codigo": "arta08",
+          "descripcion": "Western Digital",
+          "precio": "349",
+          "unidades": 2
+        },
+        {
+          "codigo": "arta05",
+          "descripcion": "HP i7",
+          "precio": "5000",
+          "unidades": 1
+        }
+      ]
+    },
+    {
+      "fecha": "13/5/2019",
+      "id": 11,
+      "articulos": [
+        {
+          "codigo": "arta08",
+          "descripcion": "Western Digital",
+          "precio": "349",
+          "unidades": 2
+        },
+        {
+          "codigo": "arta09",
+          "descripcion": "Seagate 5Tb",
+          "precio": "174",
+          "unidades": 1
+        }
+      ]
+    },
+    {
+      "fecha": "13/5/2019",
+      "id": 12,
+      "articulos": [
+        {
+          "codigo": "arta03",
+          "descripcion": "Toshiba i7",
+          "precio": "1700",
+          "unidades": 2
+        }
+      ]
     }
   ],
   "articulos": [
