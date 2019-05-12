@@ -57,23 +57,76 @@
           "unidades": 3
         }
       ]
+    },
+    {
+      "fecha": "11/05/2019",
+      "id": 3,
+      "articulos": [
+        {
+          "codigo": "arta01",
+          "descripcion": "Portatil1",
+          "precio": "Lenovo i3",
+          "unidades": 1
+        }
+      ]
+    },
+    {
+      "fecha": "11/05/2019",
+      "id": 4,
+      "articulos": [
+        {
+          "codigo": "arta08",
+          "descripcion": "Disco1",
+          "precio": "Western Digital",
+          "unidades": 2
+        },
+        {
+          "codigo": "arta09",
+          "descripcion": "Disco2",
+          "precio": "Seagate 5Tb",
+          "unidades": 2
+        }
+      ]
+    },
+    {
+      "fecha": "11/05/2019",
+      "id": 5,
+      "articulos": []
+    },
+    {
+      "fecha": "11/05/2019",
+      "id": 6,
+      "articulos": []
+    },
+    {
+      "fecha": "11/05/2019",
+      "id": 7,
+      "articulos": []
+    },
+    {
+      "fecha": "13/5/2019",
+      "id": 8,
+      "articulos": [
+        {
+          "descripcion": "Nombre: Disco1",
+          "precio": "Descripcion: Western Digital",
+          "unidades": 6
+        }
+      ]
+    },
+    {
+      "fecha": "13/5/2019",
+      "id": 9,
+      "articulos": [
+        {
+          "descripcion": "Nombre: Disco1",
+          "precio": "Descripcion: Western Digital",
+          "unidades": 7
+        }
+      ]
     }
   ],
   "articulos": [
-    {
-      "id": "a01",
-      "nombre": "Portatil1",
-      "descripcion": "Lenovo i3",
-      "precio": "1500",
-      "idCat": "c01"
-    },
-    {
-      "id": "a02",
-      "nombre": "Portatil2",
-      "descripcion": "Asus i5",
-      "precio": "1600",
-      "idCat": "c01"
-    },
     {
       "id": "a03",
       "nombre": "Portatil3",
@@ -129,6 +182,31 @@
       "descripcion": "Samsumg USB 3.0",
       "precio": "99",
       "idCat": "c02"
+    },
+    {
+      "id": "t50",
+      "nombre": "patatoide",
+      "descripcion": "eiiiii",
+      "precio": [
+        "30000",
+        "c02"
+      ]
+    },
+    {
+      "id": "aaa",
+      "nombre": "aaaaaa",
+      "descripcion": "aaa",
+      "precio": [
+        "aaa",
+        "c03"
+      ]
+    },
+    {
+      "id": "t505",
+      "nombre": "aaa",
+      "descripcion": "aaa",
+      "precio": "aaa",
+      "idCat": "c01"
     }
   ]
 }

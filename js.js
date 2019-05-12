@@ -1,25 +1,30 @@
 window.onload = function () {
-    idCarrito = 0;
-    $.ajax({
-        type: "GET",
-        url: "http://localhost:3000/carritos",
-        success: function (json) {
-            idCarrito = json.length;
-        }
-    });
+    function newCarrito() {
+        idCarrito = 0;
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:3000/carritos",
+            success: function (json) {
+                idCarrito = json.length;
+            }
+        });
+        var f = new Date();
+        fechaActual = f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
+        micarrito = new Carrito(fechaActual, idCarrito);
+    }
 
-    micarrito = new Carrito("11/05/2019", idCarrito);
+    newCarrito();
     $("#bienvenida").modal("show");
 
-        //OBJETO ARTICULO
-        function Articulo(codigo, descripcion, precio) {
-            this.codigo = codigo;
-            this.descripcion = descripcion;
-            this.precio = precio;
-            this.unidades = 1;
-            //al crearse, minimo es uno
-        }
-        //FIN DE OBJETO ARTICULO
+    //OBJETO ARTICULO
+    function Articulo(codigo, descripcion, precio) {
+        this.codigo = codigo;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.unidades = 1;
+        //al crearse, minimo es uno
+    }
+    //FIN DE OBJETO ARTICULO
     ////// OBJETO CARRITO
     function Carrito(fecha, id) {
         this.fecha = fecha;
@@ -47,7 +52,7 @@ window.onload = function () {
         success: function (json) {
             $("#categorias").html('');
             json.map(elemento => {
-                $("#categorias").append("<a href='#' id=" + elemento.id + ">" + elemento.nombre + "</a>");
+                $("#categorias").append("<a href='#' class='btn btn-lg btn-block btn-outline-primary mt-4' id=" + elemento.id + ">" + elemento.nombre + "</a>");
                 if (elemento.activa == "true") {
                     pintarArt(elemento.id);
                 }
@@ -61,7 +66,7 @@ window.onload = function () {
             url: "http://localhost:3000/articulos?idCat=" + id + "",
             success: function (json) {
                 json.map(elemento => {
-                    $("#articulos").append("<div href='#' id=art" + elemento.id + "><p>" + elemento.nombre + "</p><p>" + elemento.descripcion + "</p><p>" + elemento.precio +
+                    $("#articulos").append("<div href='#' class='bg-light shadow-sm mx-auto m-5 p-4' id=art" + elemento.id + "><p>" + elemento.nombre + "</p><p>" + elemento.descripcion + "</p><p>" + elemento.precio +
                         "</p><button class='btn btn-info'>Añadir al Carrito</button></div>");
                 });
             }
@@ -80,29 +85,34 @@ window.onload = function () {
         desArt = $(this).parent().find("p:eq(1)").html();
         pvpArt = $(this).parent().find("p:eq(2)").html();
         $("#cuerpoArt").html("");
+        $("#cuerpoArt").append("<h3>Codigo</h3>");
         $("#cuerpoArt").append("<h3>" + codArt + "</h3>");
+        $("#cuerpoArt").append("<p>Nombre: </p>");
         $("#cuerpoArt").append("<p>" + nomArt + "</p>");
+        $("#cuerpoArt").append("<p>Descripcion: </p>");
         $("#cuerpoArt").append("<p>" + desArt + "</p>");
+        $("#cuerpoArt").append("<p>Precio: </p>");
         $("#cuerpoArt").append("<p>" + pvpArt + "</p>");
         $("#myModal").modal("show");
     });
 
     $("#carrito").click(function () {//Funcion para pintar todo el carro
+        precioTotal = 0;
         $("#articulos").html('');
         $("#articulos").append("<p>Su carrito tiene fecha de: " + micarrito.fecha + "</p>");
         $("#articulos").append("<p>Su numero de carrito es: " + idCarrito + "</p>");
         $("#articulos").append("<p>Sus articulos son : </p>");
         for (let index = 0; index < micarrito.articulos.length; index++) {
-            $("#articulos").append("<p>Codigo Articulo: " + micarrito.articulos[index].codigo + "</p>");
-            $("#articulos").append("<p>Descripcion Articulo: " + micarrito.articulos[index].descripcion + "</p>");
-            $("#articulos").append("<p>Precio Articulo: " + micarrito.articulos[index].precio + "</p>");
+            $("#articulos").append("<h3>Descripcion: " + micarrito.articulos[index].descripcion + "</h3>");
+            $("#articulos").append("<p>Precio: " + micarrito.articulos[index].precio + "</p>");
             $("#articulos").append("<p>Unidades Articulo: " + micarrito.articulos[index].unidades + "</p>");
+            $("#articulos").append("<p>Precio Total por articulos: " + (micarrito.articulos[index].precio*micarrito.articulos[index].unidades) + "€</p>");
+            precioTotal += micarrito.articulos[index].precio*micarrito.articulos[index].unidades;
         }
-        $("#articulos").append("<div id=compraJSON class='btn btn-info'>Comprar</div>");
+        $("#articulos").append("<p>Precio TOTAL carrito: " + precioTotal + "</p>");
     });
 
     $("#compraJSON").click(function () {//funcion para meter en el json
-        console.log("HOLA");
         datos = JSON.stringify(micarrito);
         $.ajax({
             type: "POST",
@@ -110,22 +120,22 @@ window.onload = function () {
             data: datos,
             contentType: 'application/json',
             success: function (response) {
-                console.log("FUNCIONA");
+                $("#compra").modal("show");
             }
         });
     });
 
     $("#btn-comprar").click(function () {
-        codArt = $("#cuerpoArt").find("h3:eq(0)").html();
-        nomArt = $("#cuerpoArt").find("p:eq(0)").html();
-        desArt = $("#cuerpoArt").find("p:eq(1)").html();
-        pvpArt = $("#cuerpoArt").find("p:eq(2)").html();
-
-        miarticulo = new Articulo(codArt, nomArt, desArt, pvpArt)
+        codArt = $("#cuerpoArt").find("h3:eq(1)").html();
+        nomArt = $("#cuerpoArt").find("p:eq(1)").html();
+        desArt = $("#cuerpoArt").find("p:eq(3)").html();
+        pvpArt = $("#cuerpoArt").find("p:eq(5)").html();
+        //console.log(codArt, nomArt, desArt, pvpArt);
+        miarticulo = new Articulo(codArt, desArt, pvpArt);
         micarrito.anyadirArticulo(miarticulo);
         //$("#myModal").modal("hide");//OPCIONAL
     })
-
+/////////////////////////////
     $.ajax({//CARRUSEL FOTOS
         type: "GET",
         url: "http://localhost:3000/fotos",
@@ -139,18 +149,4 @@ window.onload = function () {
             });
         }
     });
-
-    /*function mostrarProducto(idProd) {
-        $("#articulos").html('');
-        $.ajax({
-            type: "GET",
-            url: "http://localhost:3000/articulos?id=" + idProd + "",
-            success: function (json) {
-                json.map(elemento => {
-                    console.log("HOLA");
-                    $("#articulos").append("<div href='#' id=art" + elemento.id + " onclick=mostrarCategoria()>" + elemento.nombre + "</div>");
-                });
-            }
-        });
-    }*/
 }
